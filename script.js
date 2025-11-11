@@ -1,6 +1,6 @@
 // --- CONFIGURAÇÃO DO APLICATIVO ---
 // 👇 COLOQUE SEU LINK DE AFILIADO AQUI
-const LINK_AFILIADO = "https://117luck.com/?id=564695396"; 
+const LINK_AFILIADO = "https://www.67bet45.com/?id=574708079"; 
 
 const TEMPO_SINAL_SEGUNDOS = 180; // 3 minutos para cada sinal
 
