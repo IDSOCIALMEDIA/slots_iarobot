@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais tecnológica */
 }
 
 body {
@@ -23,16 +23,33 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow: hidden; /* Evita barras de rolagem indesejadas */
+    position: relative; /* Importante para posicionar o canvas */
 }
 
+/* NOVO: Estilo para o Canvas de Fundo */
+#backgroundCanvas {
+    position: absolute; /* Posição absoluta para cobrir tudo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Garante que fique no fundo */
+    background-color: var(--cor-fundo); /* Cor de fallback caso o JS não funcione */
+}
+
+/* Estilo para as telas do app, garantindo que fiquem por cima do canvas */
 .tela {
     width: 100%;
-    max-width: 450px; /* Largura de celular */
-    height: 100vh; /* Ocupa a tela inteira */
+    max-width: 450px; /* Largura ideal para celular, no desktop ficará centralizado */
+    height: 100vh; /* Ocupa a altura total da viewport */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 15px; /* Padding ajustado */
+    position: relative; /* Para que as telas fiquem acima do canvas */
+    z-index: 1; /* Garante que fique acima do canvas */
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente para o conteúdo */
+    backdrop-filter: blur(5px); /* Efeito de blur no fundo atrás do conteúdo */
 }
 
 /* --- Tela 1: Banca --- */
@@ -42,16 +59,18 @@ body {
 }
 
 .logo-container h2 {
-    font-size: 2rem;
+    font-size: 2.2rem; /* Aumentado um pouco */
     color: var(--cor-destaque-vermelho);
     text-align: center;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5); /* Sombra para destacar */
 }
 
 .aviso-idade {
     text-align: center;
-    border: 1px solid var(--cor-texto);
+    border: 1px solid var(--cor-destaque-amarelo); /* Borda com cor de destaque */
     padding: 10px;
     border-radius: 8px;
+    font-size: 0.9rem;
 }
 
 .opcoes-banca {
@@ -69,27 +88,32 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s; /* Transições para hover/active */
+    color: var(--cor-texto); /* Garante cor do texto em todos */
+}
+.btn-banca:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 .btn-banca:active {
     transform: scale(0.98);
+    box-shadow: none;
 }
 .btn-banca span {
     font-size: 0.9rem;
     font-weight: normal;
+    opacity: 0.8;
 }
 
 #banca-baixa {
     background-color: var(--cor-destaque-vermelho);
-    color: var(--cor-texto);
 }
 #banca-media {
     background-color: var(--cor-destaque-amarelo);
-    color: #333;
+    color: #333; /* Texto escuro para contraste no amarelo */
 }
 #banca-alta {
     background-color: var(--cor-destaque-verde);
-    color: var(--cor-texto);
 }
 
 
@@ -97,22 +121,24 @@ body {
 #tela-sinais {
     padding: 10px;
     gap: 10px;
-    height: 100vh;
+    /* height: 100vh; REMOVIDO conforme instruído para corrigir layout */
 }
 
 .painel-sinal {
-    background-color: #2c2c2c;
+    background-color: rgba(44, 44, 44, 0.8); /* Fundo levemente transparente */
     width: 100%;
     padding: 15px;
     border-radius: 8px;
     text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #contador {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Aumentado */
     font-weight: bold;
     color: var(--cor-destaque-amarelo);
     margin: 5px 0 10px;
+    text-shadow: 0 0 8px rgba(241, 196, 15, 0.7);
 }
 
 .botoes-sinal {
@@ -123,38 +149,80 @@ body {
 
 .sinal-btn {
     flex: 1;
-    padding: 10px;
+    padding: 12px; /* Padding ajustado */
     border-radius: 5px;
     font-weight: bold;
     background-color: var(--cor-sinal-apagado);
     color: #888;
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out; /* Transição suave */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Classe que será adicionada via JS */
 .sinal-on {
     background-color: var(--cor-destaque-verde);
     color: var(--cor-texto);
-    box-shadow: 0 0 15px var(--cor-destaque-verde);
+    box-shadow: 0 0 15px var(--cor-destaque-verde), 0 0 25px var(--cor-destaque-verde);
+    animation: pulse-green 1.5s infinite alternate; /* Adiciona animação de pulso */
 }
-/* Exemplo de cor diferente para o Turbo */
+/* Estilo específico para o Turbo quando ativo */
 #sinal-turbo.sinal-on {
     background-color: var(--cor-destaque-vermelho);
-    box-shadow: 0 0 15px var(--cor-destaque-vermelho);
+    box-shadow: 0 0 15px var(--cor-destaque-vermelho), 0 0 25px var(--cor-destaque-vermelho);
+    animation: pulse-red 1.5s infinite alternate; /* Adiciona animação de pulso */
+}
+
+/* Animação de pulso para os botões de sinal */
+@keyframes pulse-green {
+    from { box-shadow: 0 0 10px var(--cor-destaque-verde), 0 0 20px var(--cor-destaque-verde); }
+    to { box-shadow: 0 0 20px var(--cor-destaque-verde), 0 0 35px var(--cor-destaque-verde); }
+}
+@keyframes pulse-red {
+    from { box-shadow: 0 0 10px var(--cor-destaque-vermelho), 0 0 20px var(--cor-destaque-vermelho); }
+    to { box-shadow: 0 0 20px var(--cor-destaque-vermelho), 0 0 35px var(--cor-destaque-vermelho); }
 }
 
 
 .container-plataforma {
     flex-grow: 1; /* Faz o container ocupar todo o espaço restante */
     width: 100%;
-    /* A LINHA 'height: 100%;' FOI REMOVIDA DAQUI */
     border-radius: 8px;
     overflow: hidden; /* Garante que o iframe não vaze */
     border: 2px solid #333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-top: 10px; /* Espaçamento entre o painel de sinal e o iframe */
 }
 
 /* Garante que o iframe preencha o container */
 #plataforma-frame {
     width: 100%;
     height: 100%;
+}
+
+/* Media Queries para Responsividade (Garante que se ajuste bem em telas pequenas) */
+@media (max-width: 480px) {
+    .tela {
+        padding: 10px;
+        gap: 20px;
+    }
+    .logo-container h2 {
+        font-size: 1.8rem;
+    }
+    .btn-banca {
+        font-size: 1rem;
+        padding: 12px;
+    }
+    .btn-banca span {
+        font-size: 0.8rem;
+    }
+    .painel-sinal {
+        padding: 10px;
+    }
+    #contador {
+        font-size: 1.5rem;
+    }
+    .sinal-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
 }
