@@ -147,7 +147,7 @@ body {
 .container-plataforma {
     flex-grow: 1; /* Faz o container ocupar todo o espaço restante */
     width: 100%;
-    height: 100%; /* Ocupa o espaço flexível */
+    /* A LINHA 'height: 100%;' FOI REMOVIDA DAQUI */
     border-radius: 8px;
     overflow: hidden; /* Garante que o iframe não vaze */
     border: 2px solid #333;
