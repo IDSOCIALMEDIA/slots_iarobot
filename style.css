@@ -55,24 +55,43 @@ body {
 /* --- Tela 1: Banca --- */
 #tela-banca {
     justify-content: center;
-    gap: 30px;
+    gap: 25px; /* Ajustado o gap */
 }
 
-/* ESTILO DA LOGO DE IMAGEM (NOVA ALTERAÇÃO) */
 .logo-container img {
-    width: 100%; /* Faz a imagem se ajustar à largura */
-    max-width: 350px; /* Defina o tamanho máximo que desejar */
-    height: auto; /* Mantém a proporção */
+    width: 100%;
+    max-width: 350px; 
+    height: auto; 
     display: block;
-    margin: 0 auto; /* Centraliza */
+    margin: 0 auto; 
 }
+
+/* NOVO: ESTILO DO AVISO DE IA */
+.ia-aviso {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(241, 196, 15, 0.1); /* Fundo amarelo transparente */
+    border: 1px solid var(--cor-destaque-amarelo);
+    border-radius: 8px;
+    width: 100%;
+}
+.ia-aviso p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+.ia-aviso strong {
+    color: var(--cor-destaque-amarelo);
+    text-transform: uppercase;
+}
+/* FIM DO NOVO ESTILO */
 
 .aviso-idade {
     text-align: center;
-    border: 1px solid var(--cor-destaque-amarelo);
+    border: 1px solid var(--cor-texto);
     padding: 10px;
     border-radius: 8px;
     font-size: 0.9rem;
+    width: 100%; /* Garante largura total */
 }
 
 .opcoes-banca {
@@ -121,7 +140,7 @@ body {
 
 /* --- Tela 2: Sinais e Iframe --- */
 #tela-sinais {
-    padding: 10px;
+    padding: 10px 10px 0 10px; /* Remove padding inferior para a barra de progresso */
     gap: 10px;
 }
 
@@ -183,9 +202,10 @@ body {
 .container-plataforma {
     flex-grow: 1; /* Ocupa o espaço restante */
     width: 100%;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0; /* Arredonda cantos superiores */
     overflow: hidden; 
     border: 2px solid #333;
+    border-bottom: none; /* Remove borda inferior */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     margin-top: 10px; 
 }
@@ -195,10 +215,31 @@ body {
     height: 100%;
 }
 
+/* NOVO: ESTILO DA BARRA DE PROGRESSO DO SINAL */
+.sinal-progress-bar {
+    width: 100%;
+    height: 10px; /* Altura da barra */
+    background-color: #333; /* Fundo da barra */
+    border-radius: 0 0 8px 8px; /* Arredonda cantos inferiores */
+    border: 2px solid #333;
+    border-top: none;
+    overflow: hidden;
+    margin-bottom: 10px; /* Ajusta espaçamento inferior da tela */
+}
+
+#sinal-progress-fill {
+    height: 100%;
+    width: 100%; /* Começa em 100% */
+    background-color: var(--cor-destaque-verde); /* Cor da barra */
+    transition: width 1s linear; /* Transição suave */
+    border-radius: 0 0 5px 5px;
+}
+/* FIM DO NOVO ESTILO */
+
 /* Ajustes para telas bem pequenas */
 @media (max-width: 480px) {
     .tela {
-        padding: 10px;
+        padding: 10px 10px 0 10px; /* Ajusta padding */
         gap: 20px;
     }
     .btn-banca {
