@@ -1,6 +1,6 @@
 // --- CONFIGURAÇÃO ---
 // 👇 COLOQUE SEU LINK DE AFILIADO AQUI
-const LINK_AFILIADO = "https://SEU_LINK_DE_AFILIADO_AQUI.com"; 
+const LINK_AFILIADO = "https://117luck.com/?id=564695396"; 
 
 const TEMPO_SINAL_SEGUNDOS = 180; // 3 minutos
 
