@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Fortune Tiger 1.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section id="tela-banca" class="tela">
+        <div class="logo-container">
+            <h2>HELP FORTUNE TIGER 1.0</h2>
+        </div>
+        
+        <div class="aviso-idade">
+            <p><strong>18+</strong></p>
+            <p>JOGUE COM RESPONSABILIDADE</p>
+        </div>
+        
+        <div class="opcoes-banca">
+            <button class="btn-banca" id="banca-baixa">
+                <strong>BANCA BAIXA</strong>
+                <span>(R$ 10 - R$ 49)</span>
+            </button>
+            <button class="btn-banca" id="banca-media">
+                <strong>BANCA MÉDIA</strong>
+                <span>(R$ 50 - R$ 99)</span>
+            </button>
+            <button class="btn-banca" id="banca-alta">
+                <strong>BANCA ALTA</strong>
+                <span>(R$ 100+)</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="tela-sinais" class="tela" style="display: none;">
+        
+        <div class="painel-sinal">
+            <h3>SINAL ATUAL:</h3>
+            <div id="contador">--:--</div>
+            <div class="botoes-sinal">
+                <div id="sinal-normal" class="sinal-btn">MODO NORMAL</div>
+                <div id="sinal-turbo" class="sinal-btn">MODO TURBO</div>
+            </div>
+        </div>
+        
+        <div class="container-plataforma">
+            <iframe id="plataforma-frame" 
+                    src="" 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
