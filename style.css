@@ -147,17 +147,17 @@ body {
 .painel-sinal {
     background-color: rgba(44, 44, 44, 0.8);
     width: 100%;
-    padding: 15px;
+    padding: 8px 15px; /* MENOS ESPAÇO (8px em cima/baixo) */
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #contador {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* MENOR */
     font-weight: bold;
     color: var(--cor-destaque-amarelo);
-    margin: 5px 0 10px;
+    margin: 4px 0 8px; /* MENOS MARGEM */
     text-shadow: 0 0 8px rgba(241, 196, 15, 0.7);
 }
 
@@ -169,9 +169,10 @@ body {
 
 .sinal-btn {
     flex: 1;
-    padding: 12px;
+    padding: 8px; /* MENOR */
     border-radius: 5px;
     font-weight: bold;
+    font-size: 0.9rem; /* FONTE MENOR */
     background-color: var(--cor-sinal-apagado);
     color: #888;
     transition: all 0.3s ease-in-out;
